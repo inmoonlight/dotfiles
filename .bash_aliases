@@ -35,3 +35,9 @@ alias vi='vim'
 alias ta='tmux attach -t'
 alias tn='tmux new -s'
 alias tr='tmux rename-window -t'
+
+# pyenv
+export PYENV_ROOT="/home1/irteam/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - --no-rehash)"
+eval "$(pyenv virtualenv-init -)"
