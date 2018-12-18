@@ -7,13 +7,13 @@ It is written based on [Lucy's Dotfiles](https://github.com/e9t/dotfiles).
 zsh <br>
 oh-my-zsh
 
-### CentOS
+#### CentOS
 ```shell
 sudo yum install zsh
 cd $HOME && curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 ```
 
-### Mac
+#### Mac
 ```shell
 brew install zsh
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
@@ -35,7 +35,24 @@ git submodule update
 
 ## Features
 
-### ZSH
+### ZSH plugins
+* [alias-tips](https://github.com/djui/alias-tips)
+* [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+* [autojump](https://github.com/wting/autojump)
+
+```shell
+cd ${ZSH_CUSTOM1:-$ZSH/custom}/plugins
+git clone https://github.com/djui/alias-tips.git
+git clone https://github.com/zsh-users/zsh-autosuggestions.git
+git clone git://github.com/wting/autojump.git
+
+vi ~/.zshrc
+# -plugins=(...)
+# +plugins=(... alias-tips zsh-autosuggestions)
+#        [[ -s /Users/user/.autojump/etc/profile.d/autojump.sh ]] && source /Users/user/.autojump/etc/profile.d/autojump.sh
+#
+#        autoload -U compinit && compinit -u
+```
 
 ### Vim
 
