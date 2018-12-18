@@ -9,8 +9,9 @@ oh-my-zsh
 
 #### CentOS
 ```shell
-sudo yum install zsh
-cd $HOME && curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+sudo yum install zsh # irteamsu
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh # irteam
+mv ~/.oh-my-zsh/ $HOME/
 ```
 
 #### Mac
