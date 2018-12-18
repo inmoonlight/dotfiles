@@ -12,6 +12,7 @@ oh-my-zsh
 sudo yum install zsh # irteamsu
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh # irteam
 mv ~/.oh-my-zsh/ $HOME/
+mv ~/.zshrc $HOME/
 ```
 
 #### Mac
