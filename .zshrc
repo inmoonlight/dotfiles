@@ -1,6 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 export HOME="/home/irteam/users/jhmoon"
-export PATH="$PATH:$HOME/bin"
+#export PATH="$PATH:$HOME/bin"
+
+# Path to JAVA
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64"
+export SPARK_HOME="/home1/irteam/nmt_common/nexus/spark-2.4.0-bin-hadoop2.7"
+export PATH="$PATH:$HOME/bin:$JAVA_HOME/bin:$SPARK_HOME/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -64,9 +69,9 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git alias-tips zsh-autosuggestions)
-        [[ -s /Users/user/.autojump/etc/profile.d/autojump.sh ]] && source /Users/user/.autojump/etc/profile.d/autojump.sh
+    [[ -s /home/irteam/users/jhmoon/.autojump/etc/profile.d/autojump.sh ]] && source /home/irteam/users/jhmoon/.autojump/etc/profile.d/autojump.sh
 
-        autoload -U compinit && compinit -u
+    autoload -U compinit && compinit -u
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,6 +125,7 @@ eval "$(pyenv virtualenv-init -)"
 
 # tmux
 tmux source-file ~/.tmux.conf
+export TERM=screen-256color
 
 # ----------------------------------------------------------------------------
 # Aliases
@@ -136,9 +142,12 @@ alias ..3='cd ../../..'
 alias ..4='cd ../../../..'
 alias ..5='cd ../../../../..'
 alias vi='vim'
+alias bat="~/.bat/bat/bat"
 
 # tmux
 alias ta='tmux attach -t'
 alias tn='tmux new -s'
 alias tr='tmux rename-window -t'
 alias tls='tmux ls'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

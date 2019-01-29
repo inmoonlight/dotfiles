@@ -1,8 +1,3 @@
-# Dotfiles
-
-My dotfiles for bash.<br>
-It is written based on [Lucy's Dotfiles](https://github.com/e9t/dotfiles).
-
 ## Requirements
 zsh <br>
 oh-my-zsh
@@ -21,21 +16,15 @@ brew install zsh
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 ```
 
-## Installation
 ```shell
-# backup previous dotfiles
-mkdir -p ~/.dotfiles.backup
-mv ~/.[^.]* ~/.dotfiles.backup/
-
-# get new dotfiles
-git clone https://github.com/inmoonlight/dotfiles.git
-mv dotfiles/* dotfiles/.[^.]* ./
-rmdir dotfiles
-git submodule init
-git submodule update
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-## Features
+#### via wget
+
+```shell
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
 
 ### ZSH plugins
 * [alias-tips](https://github.com/djui/alias-tips)
@@ -55,9 +44,3 @@ vi ~/.zshrc
 #
 #        autoload -U compinit && compinit -u
 ```
-
-### Vim
-
-### Tmux
-
-### Git
