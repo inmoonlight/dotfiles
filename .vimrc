@@ -335,3 +335,7 @@ highlight TodoKeywords cterm=bold term=bold ctermfg=Black ctermbg=Yellow
 
 " Set paste
 set paste  " 붙여넣기 계단현상 없애기
+
+" Set mouse when running vim in tmux
+"set ttymouse=xterm2
+set mouse=a

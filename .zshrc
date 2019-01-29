@@ -1,6 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 export HOME="/home/irteam/users/jhmoon"
-export PATH="$PATH:$HOME/bin"
+#export PATH="$PATH:$HOME/bin"
+
+# Path to JAVA
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64"
+export SPARK_HOME="/home1/irteam/nmt_common/nexus/spark-2.4.0-bin-hadoop2.7"
+export PATH="$PATH:$HOME/bin:$JAVA_HOME/bin:$SPARK_HOME/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -125,6 +130,7 @@ fi
 
 # tmux
 tmux source-file ~/.tmux.conf
+export TERM=screen-256color
 
 # ----------------------------------------------------------------------------
 # Aliases
@@ -141,9 +147,12 @@ alias ..3='cd ../../..'
 alias ..4='cd ../../../..'
 alias ..5='cd ../../../../..'
 alias vi='vim'
+alias bat="~/.bat/bat/bat"
 
 # tmux
 alias ta='tmux attach -t'
 alias tn='tmux new -s'
 alias tr='tmux rename-window -t'
 alias tls='tmux ls'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
