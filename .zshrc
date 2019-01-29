@@ -64,10 +64,10 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git alias-tips zsh-autosuggestions)
-        [[ -s /Users/user/.autojump/etc/profile.d/autojump.sh ]] && source /Users/user/.autojump/etc/profile.d/autojump.sh
+ZSH_DISABLE_COMPFIX=true # https://github.com/robbyrussell/oh-my-zsh/issues/6835
+    [[ -s /home/irteam/users/jhmoon/.autojump/etc/profile.d/autojump.sh ]] && source /home/irteam/users/jhmoon/.autojump/etc/profile.d/autojump.sh
 
-        autoload -U compinit && compinit -u
-
+    autoload -U compinit && compinit -u
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -114,9 +114,14 @@ export LD_LIBRARY_PATH='/usr/local/lib'
 
 # pyenv
 export PYENV_ROOT="/home1/irteam/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - --no-rehash)"
-eval "$(pyenv virtualenv-init -)"
+export PATH="$PYENV_ROOT/bin:/home1/irteam/nmt_common/nexus/bazel/bin:$PATH"
+#export PATH="$PYENV_ROOT/bin:/home1/irteam/users/smlee/bazel0.15/output:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init - --no-rehash)"
+#eval "$(pyenv virtualenv-init -)"
 
 # tmux
 tmux source-file ~/.tmux.conf

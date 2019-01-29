@@ -58,7 +58,7 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
-
+colorscheme jellybeans
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 4. Files, backups and undo
@@ -332,3 +332,6 @@ set showtabline=1
 set confirm
 
 highlight TodoKeywords cterm=bold term=bold ctermfg=Black ctermbg=Yellow
+
+" Set paste
+set paste  " 붙여넣기 계단현상 없애기
