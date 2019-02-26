@@ -57,7 +57,10 @@ vi ~/.zshrc
 ```
 
 ### Vim plugins
-https://github.com/junegunn/vim-plug
+1. install [vim-plug](https://github.com/junegunn/vim-plug)
+2. plugins
+  * [nerdcommenter](https://github.com/scrooloose/nerdcommenter)
+
 
 ### Tmux
 
