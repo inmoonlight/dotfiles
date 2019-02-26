@@ -328,6 +328,12 @@ set statusline+=\ %=\ row:%l/%L\ (%02p%%)\              "Rownumber/total (%)
 " Hide tabline
 set showtabline=1
 
+" Split keymap
+noremap _ <C-w>n
+noremap <Bar> <C-w>v
+set splitright
+set splitbelow
+
 " Prompt 'yes'/'no'/'cancel' if closing with unsaved changes
 set confirm
 
