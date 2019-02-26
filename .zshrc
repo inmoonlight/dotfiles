@@ -1,3 +1,7 @@
+if [ -f ~/.bashrc ]; then
+    source ~/.bashrc
+fi
+
 # If you come from bash you might have to change your $PATH.
 export HOME="/home/irteam/users/jhmoon"
 #export PATH="$PATH:$HOME/bin"
@@ -5,7 +9,7 @@ export HOME="/home/irteam/users/jhmoon"
 # Path to JAVA
 export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64"
 export SPARK_HOME="/home1/irteam/nmt_common/nexus/spark-2.4.0-bin-hadoop2.7"
-export PATH="$PATH:$HOME/bin:$JAVA_HOME/bin:$SPARK_HOME/bin"
+export PATH="$PATH:$HOME/bin:/bin:/sbin:/usr/bin:/usr/local/bin:$JAVA_HOME/bin:$SPARK_HOME/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -115,7 +119,7 @@ export LANG=en_US.UTF-8
 export PYTHONIOENCODING=UTF-8   # http://stackoverflow.com/a/6361471/1054939
 
 # Linker library
-export LD_LIBRARY_PATH='/usr/local/lib'
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 
 # pyenv
 export PYENV_ROOT="/home1/irteam/.pyenv"
@@ -154,5 +158,6 @@ alias ta='tmux attach -t'
 alias tn='tmux new -s'
 alias tr='tmux rename-window -t'
 alias tls='tmux ls'
+alias tk='tmux kill-session -t'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
