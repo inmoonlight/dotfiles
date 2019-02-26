@@ -303,6 +303,14 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 14. Customized (Overrrides current file settings)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins install
+call plug#begin('~/.vim/plugged')
+
+" my Plugins
+Plug 'scrooloose/nerdcommenter'
+
+call plug#end()
+
 " [For timestamping](http://stackoverflow.com/a/58604/1054939)
 nmap <leader>t i<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>
 imap <leader>t <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
