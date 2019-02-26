@@ -3,7 +3,8 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # If you come from bash you might have to change your $PATH.
-export HOME="/home/irteam/users/jhmoon"
+username="jhmoon"
+export HOME="/home/irteam/users/${username}"
 #export PATH="$PATH:$HOME/bin"
 
 # Path to JAVA
@@ -155,7 +156,7 @@ alias bat="~/.bat/bat/bat"
 
 # tmux
 alias ta='tmux attach -t'
-alias tn='tmux new -s'
+alias tn='tmux -L ${username} new -s'
 alias tr='tmux rename-window -t'
 alias tls='tmux ls'
 alias tk='tmux kill-session -t'
