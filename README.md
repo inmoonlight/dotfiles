@@ -56,7 +56,8 @@ vi ~/.zshrc
 #        autoload -U compinit && compinit -u
 ```
 
-### Vim
+### Vim plugins
+https://github.com/junegunn/vim-plug
 
 ### Tmux
 
