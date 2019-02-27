@@ -367,6 +367,7 @@ set showtabline=1
 " Split keymap
 noremap _ <C-w>n
 noremap <Bar> <C-w>v
+map <Tab> <C-W>w
 set splitright
 set splitbelow
 
