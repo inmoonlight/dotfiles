@@ -155,7 +155,7 @@ alias vi='vim'
 alias bat="~/.bat/bat/bat"
 
 # tmux
-alias ta='tmux attach -t'
+alias ta='tmux -L ${username} attach -t'
 alias tn='tmux -L ${username} new -s'
 alias tr='tmux rename-window -t'
 alias tls='tmux ls'
