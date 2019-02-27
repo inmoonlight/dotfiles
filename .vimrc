@@ -306,6 +306,12 @@ endfunction
 " Plugins install
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdcommenter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 " NERDCommenter settings
