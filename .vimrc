@@ -355,6 +355,13 @@ map <F8> :call DeleteTrailingWS() <CR>
 " Sets line number
 set number
 
+" Current line highlight
+set cursorline
+hi cursorline cterm=none term=none
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+highlight CursorLine guibg=#303000 ctermbg=234
+
 " Set status line
 set statusline=\ %F%m%r%h\ %w\                     "File, Modified? Readonly?
 set statusline+=\ %y\                                   "FileType
