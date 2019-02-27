@@ -59,6 +59,7 @@ vi ~/.zshrc
 ### Vim plugins
 1. install [vim-plug](https://github.com/junegunn/vim-plug)
 2. plugins
+
 ref: https://bluesh55.github.io/2016/10/09/vim-ide/
   * [nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 
