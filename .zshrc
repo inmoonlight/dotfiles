@@ -157,8 +157,8 @@ alias bat="~/.bat/bat/bat"
 # tmux
 alias ta='tmux -L ${username} attach -t'
 alias tn='tmux -L ${username} new -s'
-alias tr='tmux rename-window -t'
-alias tls='tmux ls'
-alias tk='tmux kill-session -t'
+alias tr='tmux -L ${username} rename-window -t'
+alias tls='tmux -L ${username} ls'
+alias tk='tmux kill-session -L ${username} -t'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
