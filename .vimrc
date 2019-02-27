@@ -330,6 +330,15 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+" NERDTree keymap
+map <Leader>nt <ESC>:NERDTree<CR>
+
+" ctrpvim/ctrlp.vim setting
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$',
+  \ 'file': '\v\.(exe|so|dll)$'
+\ }
+
 " [For timestamping](http://stackoverflow.com/a/58604/1054939)
 nmap <leader>t i<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>
 imap <leader>t <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
