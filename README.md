@@ -65,5 +65,6 @@ ref: https://bluesh55.github.io/2016/10/09/vim-ide/
 
 
 ### Tmux
+[tmux plugin manager (tpm)](https://github.com/tmux-plugins/tpm)
 
 ### Git
