@@ -126,12 +126,16 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 export PYENV_ROOT="/home1/irteam/.pyenv"
 export PATH="$PYENV_ROOT/bin:/home1/irteam/nmt_common/nexus/bazel/bin:$PATH"
 #export PATH="$PYENV_ROOT/bin:/home1/irteam/users/smlee/bazel0.15/output:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init - --no-rehash)"
-#eval "$(pyenv virtualenv-init -)"
+# centOS
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+#if command -v pyenv 1>/dev/null 2>&1; then
+#  eval "$(pyenv init -)"
+#fi
+
+# macOS
+#if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+#if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # tmux
 tmux source-file ~/.tmux.conf
