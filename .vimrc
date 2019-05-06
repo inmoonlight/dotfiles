@@ -52,6 +52,8 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" Set pep8 column limit
+set colorcolumn=80
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 3. Colors and Fonts
@@ -67,7 +69,6 @@ colorscheme jellybeans
 "set nobackup
 "set nowb
 "set noswapfile
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 5. Text, tab and indent related
