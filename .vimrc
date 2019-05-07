@@ -54,6 +54,7 @@ set tm=500
 
 " Set pep8 column limit
 set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 3. Colors and Fonts
