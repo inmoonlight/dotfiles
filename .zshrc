@@ -141,6 +141,12 @@ eval "$(pyenv virtualenv-init -)"
 tmux source-file ~/.tmux.conf
 export TERM=screen-256color
 
+# github
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # ----------------------------------------------------------------------------
 # Aliases
 # ----------------------------------------------------------------------------
@@ -164,5 +170,3 @@ alias tn='tmux -L ${username} new -s'
 alias tr='tmux -L ${username} rename-window -t'
 alias tls='tmux -L ${username} ls'
 alias tk='tmux kill-session -L ${username} -t'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
