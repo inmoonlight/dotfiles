@@ -314,7 +314,7 @@ call vundle#end()
 
 " Syntastic settings
 let g:syntastic_python_checkers = [ 'pep8' ]
-"let g:syntastic_python_checkers = [ 'flake8' ]
+let g:syntastic_python_checkers = [ 'flake8' ]
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
@@ -331,7 +331,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'nvie/vim-flake8'
 call plug#end()
+
+" Run Flake8 after every save of a Python source file
+autocmd BufWritePost *.py call Flake8()
 
 " NERDCommenter settings
 " Add spaces after comment delimiters by default
