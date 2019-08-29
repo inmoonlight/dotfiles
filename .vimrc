@@ -332,6 +332,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nvie/vim-flake8'
+" Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf/vim'
 call plug#end()
 
 " Run Flake8 after every save of a Python source file
@@ -361,6 +364,10 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$',
   \ 'file': '\v\.(exe|so|dll)$'
 \ }
+
+" fzf keymap
+nmap ; :Buffers<CR>
+nmap <Leader>f :Files<CR>
 
 " [For timestamping](http://stackoverflow.com/a/58604/1054939)
 nmap <leader>t i<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>
