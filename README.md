@@ -41,6 +41,7 @@ git submodule update
 * [alias-tips](https://github.com/djui/alias-tips)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [autojump](https://github.com/wting/autojump)
+* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
 ```shell
 cd ${ZSH_CUSTOM1:-$ZSH/custom}/plugins
