@@ -367,7 +367,8 @@ let g:ctrlp_custom_ignore = {
 
 " fzf keymap
 nmap <leader>b :Buffers<CR>
-nmap ; :Files<CR>
+nmap <leader>f :Files<CR>
+nmap ; :GFiles<CR>
 
 " [For timestamping](http://stackoverflow.com/a/58604/1054939)
 nmap <leader>t i<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>
