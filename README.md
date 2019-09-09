@@ -72,3 +72,6 @@ ref: https://statico.github.io/vim3.html
 [tmux plugin manager (tpm)](https://github.com/tmux-plugins/tpm)
 
 ### Git
+
+### SCM breeze
+https://github.com/scmbreeze/scm_breeze
