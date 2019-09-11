@@ -75,3 +75,4 @@ ref: https://statico.github.io/vim3.html
 
 ### SCM breeze
 https://github.com/scmbreeze/scm_breeze
+to fix git alias, modify `$HOME/.git.scmbrc`
