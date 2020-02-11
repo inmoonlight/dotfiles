@@ -165,6 +165,8 @@ alias ..4='cd ../../../..'
 alias ..5='cd ../../../../..'
 alias vi='vim'
 alias bat="~/.bat/bat/bat"
+alias duh="du -h --max-depth=1"
+alias chx="chmod +x"
 
 # tmux
 alias ta='tmux -L ${username} attach -t'
