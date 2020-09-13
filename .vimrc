@@ -220,9 +220,10 @@ if has('gui_running') || using_neovim || (&term =~? 'mlterm\|xterm\|xterm-256\|s
     if !has('gui_running')
         let &t_Co = 256
     endif
-    colorscheme vim-monokai-tasty
+"    colorscheme vim-monokai-tasty
+    colorscheme jellybeans
 else
-    colorscheme delek
+    colorscheme jellybeans
 endif
 
 " needed so deoplete can auto select the first suggestion
