@@ -466,6 +466,7 @@ endif
 " Keymap
 noremap _ <C-w>n
 noremap <Bar> <C-w>v
+inoremap jk <ESC>
 
 set splitright
 set splitbelow
