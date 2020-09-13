@@ -60,15 +60,8 @@ vi ~/.zshrc
 #        autoload -U compinit && compinit -u
 ```
 
-### Vim plugins
-1. install [vim-plug](https://github.com/junegunn/vim-plug)
-2. plugins
-
-ref: https://bluesh55.github.io/2016/10/09/vim-ide/
-  * [nerdcommenter](https://github.com/scrooloose/nerdcommenter)
-ref: https://statico.github.io/vim3.html
-  * [fzf](https://github.com/junegunn/fzf)
-  * [fzf.vim](https://github.com/junegunn/fzf.vim)
+### Vimrc
+- modifed based on https://github.com/fisadev/fisa-vim-config
 
 
 ### Tmux
