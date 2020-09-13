@@ -1,433 +1,472 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 1. General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
-set history=700
+" Fisa-vim-config, a config for both Vim and NeoVim
+" http://vim.fisadev.com
+" version: 12.0.1
+
+" To use fancy symbols wherever possible, change this setting from 0 to 1
+" and use a font from https://github.com/ryanoasis/nerd-fonts in your terminal 
+" (if you aren't using one of those fonts, you will see funny characters here. 
+" Turst me, they look nice when using one of those fonts).
+let fancy_symbols_enabled = 0
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 2. VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set encoding=utf-8
+let using_neovim = has('nvim')
+let using_vim = !using_neovim
 
-" Ignore compiled files
-set wildignore=*.o,*~,*.pyc
-if has("win16") || has("win32")
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+" ============================================================================
+" Vim-plug initialization
+" Avoid modifying this section, unless you are very sure of what you are doing
+
+let vim_plug_just_installed = 0
+if using_neovim
+    let vim_plug_path = expand('~/.config/nvim/autoload/plug.vim')
 else
-    set wildignore+=.git\*,.hg\*,.svn\*
+    let vim_plug_path = expand('~/.vim/autoload/plug.vim')
 endif
-
-"Always show current position
-set ruler
-
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
-" For regular expressions turn magic on
-set magic
-
-" Show matching brackets when text indicator is over them
-set showmatch
-
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
-" Set pep8 column limit
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 3. Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-colorscheme jellybeans
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 4. Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-"set nobackup
-"set nowb
-"set noswapfile
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 5. Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-set nosmartindent
-
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set wrap "Wrap lines
-
-
-""""""""""""""""""""""""""""""
-" 6. Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-"vnoremap <silent> * :call VisualSelection('f', '')<CR>
-"vnoremap <silent> # :call VisualSelection('b', '')<CR>
-
-" [Search for selected text](http://vim.wikia.com/wiki/Search_for_visually_selected_text)
-"vnoremap // y/<C-R>"<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 7. Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
-
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-"map <space> /
-"map <c-space> ?
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-"
-" Remember info about open buffers on close
-set viminfo^=%
-
-
-""""""""""""""""""""""""""""""
-" 7. Status line
-""""""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=2
-
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 8. Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap VIM 0 to first non-blank character
-map 0 ^
-
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
-
-" Delete trailing whitespace on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  %s/\s\+$//ge
-endfunc
-func! ReplaceQuotes()
-  %s/[“”]/"/ge
-  %s/[‘’]/'/ge
-endfunc
-autocmd BufWrite *.c :call DeleteTrailingWS()
-autocmd BufWrite *.cpp :call DeleteTrailingWS()
-autocmd BufWrite *.css :call DeleteTrailingWS()
-autocmd BufWrite *.h :call DeleteTrailingWS()
-autocmd BufWrite *.html :call DeleteTrailingWS()
-autocmd BufWrite *.less :call DeleteTrailingWS()
-autocmd BufWrite *.markdown :call DeleteTrailingWS()
-autocmd BufWrite *.md :call DeleteTrailingWS()
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.tex :call DeleteTrailingWS()
-autocmd BufWrite *.markdown :call ReplaceQuotes()
-autocmd BufWrite *.md :call ReplaceQuotes()
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 9. vimgrep searching and cope displaying
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
-
-" Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-" Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 10. Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 11. Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 13. Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
+if !filereadable(vim_plug_path)
+    echo "Installing Vim-plug..."
+    echo ""
+    if using_neovim
+        silent !mkdir -p ~/.config/nvim/autoload
+        silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    else
+        silent !mkdir -p ~/.vim/autoload
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     endif
+    let vim_plug_just_installed = 1
+endif
 
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
+" manually load vim-plug the first time
+if vim_plug_just_installed
+    :execute 'source '.fnameescape(vim_plug_path)
+endif
 
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
+" Obscure hacks done, you can now modify the rest of the config down below 
+" as you wish :)
+" IMPORTANT: some things in the config are vim or neovim specific. It's easy 
+" to spot, they are inside `if using_vim` or `if using_neovim` blocks.
 
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+" ============================================================================
+" Active plugins
+" You can disable or add new ones here:
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+" this needs to be here, so vim-plug knows we are declaring the plugins we
+" want to use
+if using_neovim
+    call plug#begin("~/.config/nvim/plugged")
+else
+    call plug#begin("~/.vim/plugged")
+endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+" Now the actual plugins:
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
-endfunction
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 14. Customized (Overrrides current file settings)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'Syntastic'
-call vundle#end()
-
-" Syntastic settings
-let g:syntastic_python_checkers = [ 'pep8' ]
-let g:syntastic_python_checkers = [ 'flake8' ]
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_w = 1
-let g:syntastic_quiet_messages = { "type": "style" }
-syntax on
-
-" Plugins install
-call plug#begin('~/.vim/plugged')
+" Override configs by directory
+Plug 'arielrossanigo/dir-configs-override.vim'
+" Code commenter
 Plug 'scrooloose/nerdcommenter'
+" Better file browser
+Plug 'scrooloose/nerdtree'
+" Class/module browser
+Plug 'majutsushi/tagbar'
+" Search results counter
+Plug 'vim-scripts/IndexedSearch'
+" A couple of nice colorschemes
+" Plug 'fisadev/fisa-vim-colorscheme'
+Plug 'patstockwell/vim-monokai-tasty'
+" Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
-Plug 'airblade/vim-gitgutter'
+" Code and files fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" Pending tasks list
+Plug 'fisadev/FixedTaskList.vim'
+" Async autocompletion
+if using_neovim && vim_plug_just_installed
+    Plug 'Shougo/deoplete.nvim', {'do': ':autocmd VimEnter * UpdateRemotePlugins'}
+else
+    Plug 'Shougo/deoplete.nvim'
+endif
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+" Python autocompletion
+Plug 'deoplete-plugins/deoplete-jedi'
+" Completion from other opened files
+Plug 'Shougo/context_filetype.vim'
+" Just to add the python go-to-definition and similar features, autocompletion
+" from this plugin is disabled
+Plug 'davidhalter/jedi-vim'
+" Automatically close parenthesis, etc
+Plug 'Townk/vim-autoclose'
+" Surround
+Plug 'tpope/vim-surround'
+" Indent text object
+Plug 'michaeljsmith/vim-indent-object'
+" Indentation based movements
+Plug 'jeetsukumaran/vim-indentwise'
+" Better language packs
+Plug 'sheerun/vim-polyglot'
+" Ack code search (requires ack installed in the system)
+Plug 'mileszs/ack.vim'
+" Paint css colors with the real color
+Plug 'lilydjwg/colorizer'
+" Window chooser
+Plug 't9md/vim-choosewin'
+" Automatically sort python imports
+Plug 'fisadev/vim-isort'
+" Highlight matching html tags
+Plug 'valloric/MatchTagAlways'
+" Generate html in a simple way
+Plug 'mattn/emmet-vim'
+" Git integration
 Plug 'tpope/vim-fugitive'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'nvie/vim-flake8'
-" Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf/vim'
+" Git/mercurial/others diff icons on the side of the file lines
+Plug 'mhinz/vim-signify'
+" Yank history navigation
+Plug 'vim-scripts/YankRing.vim'
+" Linters
+Plug 'neomake/neomake'
+" Relative numbering of lines (0 is the current line)
+" (disabled by default because is very intrusive and can't be easily toggled
+" on/off. When the plugin is present, will always activate the relative
+" numbering every time you go to normal mode. Author refuses to add a setting
+" to avoid that)
+Plug 'myusuf3/numbers.vim'
+" Nice icons in the file explorer and file type status line.
+Plug 'ryanoasis/vim-devicons'
+
+if using_vim
+    " Consoles as buffers (neovim has its own consoles as buffers)
+    Plug 'rosenfeld/conque-term'
+    " XML/HTML tags navigation (neovim has its own)
+    Plug 'vim-scripts/matchit.zip'
+endif
+
+" Code searcher. If you enable it, you should also configure g:hound_base_url 
+" and g:hound_port, pointing to your hound instance
+" Plug 'mattn/webapi-vim'
+" Plug 'jfo/hound.vim'
+
+" Tell vim-plug we finished declaring plugins, so it can load them
 call plug#end()
 
-" Run Flake8 after every save of a Python source file
-autocmd BufWritePost *.py call Flake8()
+" ============================================================================
+" Install plugins the first time vim runs
 
-" NERDCommenter settings
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
+if vim_plug_just_installed
+    echo "Installing Bundles, please ignore key map error messages"
+    :PlugInstall
+endif
 
-" NERDTree keymap
-map <Leader>nt <ESC>:NERDTree<CR>
+" ============================================================================
+" Vim settings and mappings
+" You can edit them as you wish
+ 
+if using_vim
+    " A bunch of things that are set by default in neovim, but not in vim
 
-" ctrpvim/ctrlp.vim setting
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$',
-  \ 'file': '\v\.(exe|so|dll)$'
-\ }
+    " no vi-compatible
+    set nocompatible
 
-" fzf keymap
-nmap <leader>b :Buffers<CR>
-nmap <leader>f :Files<CR>
-nmap ; :GFiles<CR>
+    " allow plugins by file type (required for plugins!)
+    filetype plugin on
+    filetype indent on
 
-" [For timestamping](http://stackoverflow.com/a/58604/1054939)
-nmap <leader>t i<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>
-imap <leader>t <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
-nmap <leader>d i<C-R>=strftime("%Y-%m-%d")<CR><Esc>
-imap <leader>d <C-R>=strftime("%Y-%m-%d")<CR>
+    " always show status bar
+    set ls=2
 
-" Remove trailing whitespaces
-map <F8> :call DeleteTrailingWS() <CR>
+    " incremental search
+    set incsearch
+    " highlighted search results
+    set hlsearch
 
-" [Source .vimrc file in pwd](http://www.alexeyshmalko.com/2014/using-vim-as-c-cpp-ide/)
-"set exrc
-"set secure
+    " syntax highlight on
+    syntax on
 
-" Sets line number
-set number
+    " better backup, swap and undos storage for vim (nvim has nice ones by
+    " default)
+    set directory=~/.vim/dirs/tmp     " directory to place swap files in
+    set backup                        " make backup files
+    set backupdir=~/.vim/dirs/backups " where to put backup files
+    set undofile                      " persistent undos - undo after you re-open the file
+    set undodir=~/.vim/dirs/undos
+    set viminfo+=n~/.vim/dirs/viminfo
+    " create needed directories if they don't exist
+    if !isdirectory(&backupdir)
+        call mkdir(&backupdir, "p")
+    endif
+    if !isdirectory(&directory)
+        call mkdir(&directory, "p")
+    endif
+    if !isdirectory(&undodir)
+        call mkdir(&undodir, "p")
+    endif
+end
 
-" Current line highlight
-set cursorline
-hi cursorline cterm=none term=none
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
-highlight CursorLine guibg=#303000 ctermbg=234
+" tabs and spaces handling
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
-" Set status line
-set statusline=\ %F%m%r%h\ %w\                     "File, Modified? Readonly?
-set statusline+=\ %y\                                   "FileType
-set statusline+=\ [%{''.(&fenc!=''?&fenc:&enc).''}]     "Encoding
-set statusline+=\ %=\ row:%l/%L\ (%02p%%)\              "Rownumber/total (%)
+" show line numbers
+set nu
 
-" Hide tabline
-set showtabline=1
+" remove ugly vertical lines on window division
+set fillchars+=vert:\ 
 
-" Commenting blocks of code.
-autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-autocmd FileType conf,fstab       let b:comment_leader = '# '
-autocmd FileType tex              let b:comment_leader = '% '
-autocmd FileType mail             let b:comment_leader = '> '
-autocmd FileType vim              let b:comment_leader = '" '
-noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+" use 256 colors when possible
+if has('gui_running') || using_neovim || (&term =~? 'mlterm\|xterm\|xterm-256\|screen-256')
+    if !has('gui_running')
+        let &t_Co = 256
+    endif
+    colorscheme vim-monokai-tasty
+else
+    colorscheme delek
+endif
 
-" Split keymap
+" needed so deoplete can auto select the first suggestion
+set completeopt+=noinsert
+" comment this line to enable autocompletion preview window
+" (displays documentation related to the selected completion option)
+" disabled by default because preview makes the window flicker
+set completeopt-=preview
+
+" autocompletion of files and commands behaves like shell
+" (complete only the common part, list the options that match)
+set wildmode=list:longest
+
+" save as sudo
+ca w!! w !sudo tee "%"
+
+" tab navigation mappings
+map tt :tabnew 
+map <M-Right> :tabn<CR>
+imap <M-Right> <ESC>:tabn<CR>
+map <M-Left> :tabp<CR>
+imap <M-Left> <ESC>:tabp<CR>
+
+" when scrolling, keep cursor 3 lines away from screen border
+set scrolloff=3
+
+" clear search results
+nnoremap <silent> // :noh<CR>
+
+" clear empty spaces at the end of lines on save of python files
+autocmd BufWritePre *.py :%s/\s\+$//e
+
+" fix problems with uncommon shells (fish, xonsh) and plugins running commands
+" (neomake, ...)
+set shell=/bin/bash 
+
+" Ability to add python breakpoints
+" (I use ipdb, but you can change it to whatever tool you use for debugging)
+au FileType python map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
+
+" ============================================================================
+" Plugins settings and mappings
+" Edit them as you wish.
+
+" Tagbar -----------------------------
+
+" toggle tagbar display
+map <F4> :TagbarToggle<CR>
+" autofocus on tagbar open
+let g:tagbar_autofocus = 1
+
+" NERDTree -----------------------------
+
+" toggle nerdtree display
+map <F3> :NERDTreeToggle<CR>
+" open nerdtree with the current file selected
+nmap ,t :NERDTreeFind<CR>
+" don;t show these file types
+let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+
+" Enable folder icons
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+
+" Fix directory colors
+highlight! link NERDTreeFlags NERDTreeDir
+
+" Remove expandable arrow
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
+let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
+let NERDTreeDirArrowExpandable = "\u00a0"
+let NERDTreeDirArrowCollapsible = "\u00a0"
+let NERDTreeNodeDelimiter = "\x07"
+
+" Autorefresh on tree focus
+function! NERDTreeRefresh()
+    if &filetype == "nerdtree"
+        silent exe substitute(mapcheck("R"), "<CR>", "", "")
+    endif
+endfunction
+
+autocmd BufEnter * call NERDTreeRefresh()
+
+" Tasklist ------------------------------
+
+" show pending tasks list
+map <F2> :TaskList<CR>
+
+" Neomake ------------------------------
+
+" Run linter on write
+autocmd! BufWritePost * Neomake
+
+" Check code as python3 by default
+let g:neomake_python_python_maker = neomake#makers#ft#python#python()
+let g:neomake_python_flake8_maker = neomake#makers#ft#python#flake8()
+let g:neomake_python_python_maker.exe = 'python3 -m py_compile'
+let g:neomake_python_flake8_maker.exe = 'python3 -m flake8'
+
+" Disable error messages inside the buffer, next to the problematic line
+let g:neomake_virtualtext_current_error = 0
+
+" Fzf ------------------------------
+
+" file finder mapping
+nmap ,e :Files<CR>
+" git file finder mapping
+nmap ,E :GFiles<CR>
+" tags (symbols) in current file finder mapping
+nmap ,g :BTag<CR>
+" the same, but with the word under the cursor pre filled
+nmap ,wg :execute ":BTag " . expand('<cword>')<CR>
+" tags (symbols) in all files finder mapping
+nmap ,G :Tags<CR>
+" the same, but with the word under the cursor pre filled
+nmap ,wG :execute ":Tags " . expand('<cword>')<CR>
+" general code finder in current file mapping
+nmap ,f :BLines<CR>
+" the same, but with the word under the cursor pre filled
+nmap ,wf :execute ":BLines " . expand('<cword>')<CR>
+" general code finder in all files mapping
+nmap ,F :Lines<CR>
+" the same, but with the word under the cursor pre filled
+nmap ,wF :execute ":Lines " . expand('<cword>')<CR>
+" commands finder mapping
+nmap ,c :Commands<CR>
+
+" Deoplete -----------------------------
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+\   'ignore_case': v:true,
+\   'smart_case': v:true,
+\})
+" complete with words from any opened file
+let g:context_filetype#same_filetypes = {}
+let g:context_filetype#same_filetypes._ = '_'
+
+" Jedi-vim ------------------------------
+
+" Disable autocompletion (using deoplete instead)
+let g:jedi#completions_enabled = 0
+
+" All these mappings work only for python code:
+" Go to definition
+let g:jedi#goto_command = ',d'
+" Find ocurrences
+let g:jedi#usages_command = ',o'
+" Find assignments
+let g:jedi#goto_assignments_command = ',a'
+" Go to definition in new tab
+nmap ,D :tab split<CR>:call jedi#goto()<CR>
+
+" Ack.vim ------------------------------
+
+" mappings
+nmap ,r :Ack 
+nmap ,wr :execute ":Ack " . expand('<cword>')<CR>
+
+" Window Chooser ------------------------------
+
+" mapping
+nmap  -  <Plug>(choosewin)
+" show big letters
+let g:choosewin_overlay_enable = 1
+
+" Signify ------------------------------
+
+" this first setting decides in which order try to guess your current vcs
+" UPDATE it to reflect your preferences, it will speed up opening files
+let g:signify_vcs_list = ['git', 'hg']
+" mappings to jump to changed blocks
+nmap <leader>sn <plug>(signify-next-hunk)
+nmap <leader>sp <plug>(signify-prev-hunk)
+" nicer colors
+highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
+
+" Autoclose ------------------------------
+
+" Fix to let ESC work as espected with Autoclose plugin
+" (without this, when showing an autocompletion window, ESC won't leave insert
+"  mode)
+let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
+
+" Yankring -------------------------------
+
+if using_neovim
+    let g:yankring_history_dir = '~/.config/nvim/'
+    " Fix for yankring and neovim problem when system has non-text things
+    " copied in clipboard
+    let g:yankring_clipboard_monitor = 0
+else
+    let g:yankring_history_dir = '~/.vim/dirs/'
+endif
+
+" Airline ------------------------------
+
+let g:airline_powerline_fonts = 0
+let g:airline_theme = 'bubblegum'
+let g:airline#extensions#whitespace#enabled = 0
+
+" Fancy Symbols!!
+
+if fancy_symbols_enabled
+    let g:webdevicons_enable = 1
+
+    " custom airline symbols
+    if !exists('g:airline_symbols')
+       let g:airline_symbols = {}
+    endif
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = '⭠'
+    let g:airline_symbols.readonly = '⭤'
+    let g:airline_symbols.linenr = '⭡'
+else
+    let g:webdevicons_enable = 0
+endif
+
+" Custom configurations ----------------
+
+" Include user's custom nvim configurations
+if using_neovim
+    let custom_configs_path = "~/.config/nvim/custom.vim"
+else
+    let custom_configs_path = "~/.vim/custom.vim"
+endif
+if filereadable(expand(custom_configs_path))
+  execute "source " . custom_configs_path
+endif
+
+" Keymap
 noremap _ <C-w>n
 noremap <Bar> <C-w>v
-map <Tab> <C-W>w
+
 set splitright
 set splitbelow
-
-" Prompt 'yes'/'no'/'cancel' if closing with unsaved changes
 set confirm
-
-highlight TodoKeywords cterm=bold term=bold ctermfg=Black ctermbg=Yellow
-
-" Set paste
-set paste  " 붙여넣기 계단현상 없애기
-set clipboard=unnamed
-
-" Set mouse when running vim in tmux
-"set ttymouse=xterm2
 set mouse=a
