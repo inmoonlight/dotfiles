@@ -471,3 +471,7 @@ set splitright
 set splitbelow
 set confirm
 set mouse=a
+
+" Set pep8 column limit
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
