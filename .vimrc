@@ -147,6 +147,9 @@ endif
 " Plug 'mattn/webapi-vim'
 " Plug 'jfo/hound.vim'
 
+" Custom plug
+Plug 'vim-syntastic/syntastic'
+
 " Tell vim-plug we finished declaring plugins, so it can load them
 call plug#end()
 
@@ -450,6 +453,16 @@ if fancy_symbols_enabled
 else
     let g:webdevicons_enable = 0
 endif
+
+" Syntastic -----------------------------
+let g:syntastic_python_checkers = [ 'pep8' ]
+let g:syntastic_python_checkers = [ 'flake8' ]
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_w = 1
+let g:syntastic_quiet_messages = { "type": "style" }
+syntax on
 
 " Custom configurations ----------------
 
