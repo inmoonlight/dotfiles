@@ -467,10 +467,17 @@ endif
 noremap _ <C-w>n
 noremap <Bar> <C-w>v
 inoremap jk <ESC>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 set splitright
 set splitbelow
+
+" Prompt 'yes'/'no'/'cancel' if closing with unsaved changes
 set confirm
+" Enable mouse
 set mouse=a
 
 " Set pep8 column limit
