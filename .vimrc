@@ -148,7 +148,10 @@ endif
 " Plug 'jfo/hound.vim'
 
 " Custom plug
+" Python style checker
 Plug 'vim-syntastic/syntastic'
+" Html tag generator
+Plug 'mattn/emmet-vim'
 
 " Tell vim-plug we finished declaring plugins, so it can load them
 call plug#end()
