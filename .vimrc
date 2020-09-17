@@ -477,6 +477,9 @@ syntax on
 " Keymap
 nmap <leader>q :SyntasticReset<CR>
 
+" Emmet -----------------------------
+let g:user_emmet_leader_key=','
+
 " Custom configurations ----------------
 
 " Include user's custom nvim configurations
