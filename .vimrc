@@ -369,6 +369,11 @@ call deoplete#custom#option({
 \   'ignore_case': v:true,
 \   'smart_case': v:true,
 \})
+
+" Set python2 and python3
+let g:python_host_prog = '/Library/Frameworks/Python.framework/Versions/2.7/bin/python2'
+let g:python3_host_prog = '/Users/jhmoon/.pyenv/shims/python3'
+
 " complete with words from any opened file
 let g:context_filetype#same_filetypes = {}
 let g:context_filetype#same_filetypes._ = '_'
@@ -514,3 +519,9 @@ set mouse=a
 " Set pep8 column limit
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+" Jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
