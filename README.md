@@ -1,28 +1,41 @@
 # Dotfiles
 
-My dotfiles for bash.<br>
-It is written based on [Lucy's Dotfiles](https://github.com/e9t/dotfiles).
+> Bad workers always blame their tools
 
-## Requirements
-zsh <br>
-oh-my-zsh
+My dotfiles to not blame any environments. 
 
-#### CentOS
-```shell
-sudo yum install zsh # irteamsu
-curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh # irteam
-mv ~/.oh-my-zsh/ $HOME/
-mv ~/.zshrc $HOME/
+### Requirements
 ```
-
-#### Mac
-```shell
-brew install zsh
-curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+zsh
+oh-my-zsh
+vim>=0.8.1
+tmux
 ```
 
 ## Installation
+
+:warning:  Before you get in, must set `${HOME}` !
 ```shell
+# check ${HOME}
+export HOME=""
+```
+
+### Ubuntu
+```shell
+# download jellybeans theme for vim
+mkdir -p ~/.vim/colors
+cd ~/.vim/colors
+curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+cd ~
+
+# install zsh
+sudo apt-get install -y zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"  # oh-my-zsh
+sudo apt install fonts-powerline  # font for agnoster-theme
+
+# install tmux
+sudo apt-get install -y tmux
+
 # backup previous dotfiles
 mkdir -p ~/.dotfiles.backup
 mv ~/.[^.]* ~/.dotfiles.backup/
@@ -31,9 +44,61 @@ mv ~/.[^.]* ~/.dotfiles.backup/
 git clone https://github.com/inmoonlight/dotfiles.git
 mv dotfiles/* dotfiles/.[^.]* ./
 rmdir dotfiles
-git submodule init
-git submodule update
 ```
+
+### CentOS
+```shell
+# download jellybeans theme for vim
+mkdir -p ~/.vim/colors
+cd ~/.vim/colors
+curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+cd ~
+
+# install zsh
+sudo yum install zsh # irteamsu
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh # irteam
+mv ~/.oh-my-zsh/ $HOME/
+mv ~/.zshrc $HOME/
+
+# install tmux
+sudo yum install epel-release
+sudo yum install -y tmux
+
+# backup previous dotfiles
+mkdir -p ~/.dotfiles.backup
+mv ~/.[^.]* ~/.dotfiles.backup/
+
+# get new dotfiles
+git clone https://github.com/inmoonlight/dotfiles.git
+mv dotfiles/* dotfiles/.[^.]* ./
+rmdir dotfiles
+```
+
+### Mac
+```shell
+# download jellybeans theme for vim
+mkdir -p ~/.vim/colors
+cd ~/.vim/colors
+curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+cd ~
+
+# install zsh
+brew install zsh
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+
+# install tmux
+brew install tmux
+
+# backup previous dotfiles
+mkdir -p ~/.dotfiles.backup
+mv ~/.[^.]* ~/.dotfiles.backup/
+
+# get new dotfiles
+git clone https://github.com/inmoonlight/dotfiles.git
+mv dotfiles/* dotfiles/.[^.]* ./
+rmdir dotfiles
+```
+
 
 ## Features
 
