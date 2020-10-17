@@ -4,7 +4,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 username="jhmoon"
-export HOME="/home/irteam/users/${username}"
+# export HOME="/home/irteam/users/${username}"
 #export PATH="$PATH:$HOME/bin"
 
 # Path to JAVA
