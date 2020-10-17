@@ -22,6 +22,15 @@ export HOME=""
 
 ### Ubuntu
 ```shell
+# backup previous dotfiles
+mkdir -p ~/.dotfiles.backup
+mv ~/.[^.]* ~/.dotfiles.backup/
+
+# get new dotfiles
+git clone https://github.com/inmoonlight/dotfiles.git
+mv dotfiles/* dotfiles/.[^.]* ./
+rmdir dotfiles
+
 # download jellybeans theme for vim
 mkdir -p ~/.vim/colors
 cd ~/.vim/colors
@@ -35,7 +44,10 @@ sudo apt install fonts-powerline  # font for agnoster-theme
 
 # install tmux
 sudo apt-get install -y tmux
+```
 
+### CentOS
+```shell
 # backup previous dotfiles
 mkdir -p ~/.dotfiles.backup
 mv ~/.[^.]* ~/.dotfiles.backup/
@@ -44,10 +56,7 @@ mv ~/.[^.]* ~/.dotfiles.backup/
 git clone https://github.com/inmoonlight/dotfiles.git
 mv dotfiles/* dotfiles/.[^.]* ./
 rmdir dotfiles
-```
 
-### CentOS
-```shell
 # download jellybeans theme for vim
 mkdir -p ~/.vim/colors
 cd ~/.vim/colors
@@ -63,7 +72,10 @@ mv ~/.zshrc $HOME/
 # install tmux
 sudo yum install epel-release
 sudo yum install -y tmux
+```
 
+### Mac
+```shell
 # backup previous dotfiles
 mkdir -p ~/.dotfiles.backup
 mv ~/.[^.]* ~/.dotfiles.backup/
@@ -72,10 +84,7 @@ mv ~/.[^.]* ~/.dotfiles.backup/
 git clone https://github.com/inmoonlight/dotfiles.git
 mv dotfiles/* dotfiles/.[^.]* ./
 rmdir dotfiles
-```
 
-### Mac
-```shell
 # download jellybeans theme for vim
 mkdir -p ~/.vim/colors
 cd ~/.vim/colors
@@ -88,15 +97,6 @@ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | 
 
 # install tmux
 brew install tmux
-
-# backup previous dotfiles
-mkdir -p ~/.dotfiles.backup
-mv ~/.[^.]* ~/.dotfiles.backup/
-
-# get new dotfiles
-git clone https://github.com/inmoonlight/dotfiles.git
-mv dotfiles/* dotfiles/.[^.]* ./
-rmdir dotfiles
 ```
 
 
