@@ -371,6 +371,7 @@ call deoplete#custom#option({
 \})
 
 " Set python2 and python3
+" macos
 let g:python_host_prog = '/Library/Frameworks/Python.framework/Versions/2.7/bin/python2'
 let g:python3_host_prog = '/Users/jhmoon/.pyenv/shims/python3'
 
