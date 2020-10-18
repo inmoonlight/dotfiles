@@ -268,7 +268,7 @@ set shell=/bin/bash
 
 " Ability to add python breakpoints
 " (I use ipdb, but you can change it to whatever tool you use for debugging)
-au FileType python map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
+au FileType python map <silent> <leader>b Oimport pdb; pdb.set_trace()<esc>
 
 " ============================================================================
 " Plugins settings and mappings
