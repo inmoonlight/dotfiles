@@ -9,6 +9,7 @@ My dotfiles to not blame any environments.
 zsh
 oh-my-zsh
 vim>=0.8.1
+nvim
 tmux
 ```
 
@@ -31,9 +32,19 @@ git clone https://github.com/inmoonlight/dotfiles.git
 mv dotfiles/* dotfiles/.[^.]* ./
 rmdir dotfiles
 
+# if you use nvim
+mkdir -p ~/.config/nvim
+cp ~/.vimrc ~/.config/nvim/init.vim
+
 # download jellybeans theme for vim
 mkdir -p ~/.vim/colors
 cd ~/.vim/colors
+curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+cd ~
+
+# download jellybeans theme for nvim
+mkdir -p ~/.config/nvim/colors
+cd ~/.config/nvim/colors
 curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
 cd ~
 
