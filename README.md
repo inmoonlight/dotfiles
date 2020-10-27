@@ -9,7 +9,7 @@ My dotfiles to not blame any environments.
 zsh
 oh-my-zsh
 vim>=0.8.1
-nvim
+nvim>=0.3.0
 tmux
 ```
 
