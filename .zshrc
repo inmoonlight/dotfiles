@@ -75,10 +75,10 @@ ZSH_THEME="agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git alias-tips zsh-autosuggestions)
 ZSH_DISABLE_COMPFIX=true # https://github.com/robbyrussell/oh-my-zsh/issues/6835
-    [[ -s /home/irteam/users/jhmoon/.autojump/etc/profile.d/autojump.sh ]] && source /home/irteam/users/jhmoon/.autojump/etc/profile.d/autojump.sh
+    [[ -s ${HOME}/.autojump/etc/profile.d/autojump.sh ]] && source ${HOME}/.autojump/etc/profile.d/autojump.sh
 
     autoload -U compinit && compinit -u
-source /home1/irteam/users/jhmoon/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source $ZSH/oh-my-zsh.sh
 
