@@ -163,7 +163,7 @@ alias ..2='cd ../..'
 alias ..3='cd ../../..'
 alias ..4='cd ../../../..'
 alias ..5='cd ../../../../..'
-alias vi='vim'
+alias vi='nvim'
 alias bat="~/.bat/bat/bat"
 alias duh="du -h --max-depth=1"
 alias chx="chmod +x"
